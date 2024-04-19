@@ -1,4 +1,4 @@
-package com.example.photos;
+package com.androidphotosapp.photosandroidapp;
 
 import org.junit.Test;
 
