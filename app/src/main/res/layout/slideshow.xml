@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.androidphotosapp.photosandroidapp.Slideshow">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/backwardBtn"
+        android:layout_toLeftOf="@id/forwardBtn"
+        android:contentDescription="@string/desc"
+        app:srcCompat="@drawable/image_one"/>
+
+    <Button
+        android:id="@+id/backwardBtn"
+        android:layout_width="25dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="141dp"
+        android:background="@null"
+        android:text="@string/backbtntxt"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/forwardBtn"
+        android:layout_width="25dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="141dp"
+        android:background="@null"
+        android:text="@string/fwdbtntxt"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutForAddTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView">
+
+        <model.Spinner
+            android:id="@+id/addTagOptions"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/addTagValue"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/addTagOptions"
+            android:hint="@string/tagValueName"
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/addTagButtonSlideshow"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/addTagValue"
+            android:text="@string/addButtonName"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/deleteTagButtonSlideshow"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/addTagButtonSlideshow"
+            android:text="-"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/tagsOfPhotoSlideshow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/relativeLayoutForAddTag"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/filename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_marginStart="126dp"
+        android:background="@android:color/background_light"
+        android:text="TextView"
+        android:textColor="@android:color/background_dark" />
+
+</RelativeLayout>
