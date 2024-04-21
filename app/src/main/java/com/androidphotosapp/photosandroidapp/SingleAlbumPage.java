@@ -223,6 +223,7 @@ public class SingleAlbumPage extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+        super.onActivityResult(requestCode, resultCode, resultData);
 
         if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Uri uri = null;
@@ -251,6 +252,7 @@ public class SingleAlbumPage extends AppCompatActivity {
             }
         }
     }
+
 
 
     private String doesAlbumandPhotoexist(String albumname, String photopath){
