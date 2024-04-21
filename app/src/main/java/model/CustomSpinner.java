@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 /**
  * Custom Spinner class that extends the AppCompatSpinner.
  */
-public class Spinner extends AppCompatSpinner {
+public class CustomSpinner extends AppCompatSpinner {
 
     // Listener for item selection events
     AdapterView.OnItemSelectedListener listener;
@@ -18,7 +18,7 @@ public class Spinner extends AppCompatSpinner {
      * @param context The context in which the spinner will be used.
      * @param attrs The attributes of the spinner defined in XML.
      */
-    public Spinner(Context context, AttributeSet attrs) {
+    public CustomSpinner(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

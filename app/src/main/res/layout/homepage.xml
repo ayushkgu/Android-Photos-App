@@ -13,35 +13,47 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:text="string/searchBtnTxt"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/searchBtnTxt"/>
 
-    <model.Spinner
+    <model.CustomSpinner
         android:id="@+id/spinner3"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:prompt="@string/albumOptionsPrompt"/>
 
     <ListView
         android:id="@+id/albumsList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/searchButton"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchButton"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:dividerHeight="2dp"
+        android:divider="@android:color/black"
+        android:descendantFocusability="blocksDescendants">
     </ListView>
 
-    <android.support.design.widget.FloatingActionButton
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addAlbumBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="@color/colorPrimary"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:backgroundTint="@android:color/white"
+        android:elevation="6dp"
+        android:src="@android:drawable/ic_input_add" />
 
 </RelativeLayout>

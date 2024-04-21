@@ -2,11 +2,10 @@ package com.androidphotosapp.photosandroidapp;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.XmlRes;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,21 +19,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
 
 import model.Album;
-import model.Spinner;
+import model.CustomSpinner;
 import model.AlbumManager;
 
 
 public class Homepage extends AppCompatActivity {
 
     private FloatingActionButton addAlbumBtn;
-    private Spinner spinner;
+    private CustomSpinner spinner;
     private Button searchButton;
     final Context c = this;
     String albumName;
@@ -130,7 +126,7 @@ public class Homepage extends AppCompatActivity {
             }
         });
 
-        spinner = (Spinner) findViewById(R.id.spinner3);
+        spinner = (CustomSpinner) findViewById(R.id.spinner3);
         ArrayAdapter<CharSequence> itemAdapter = ArrayAdapter.createFromResource(this, R.array.album_options,android.R.layout.simple_spinner_item);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setPrompt("Select One:");

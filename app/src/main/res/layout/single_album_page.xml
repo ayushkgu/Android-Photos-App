@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.photos_android.photos_android43.SingleAlbumPage">
+    tools:context="com.androidphotosapp.photosandroidapp.SingleAlbumPage">
 
     <TextView
         android:id="@+id/albumName"

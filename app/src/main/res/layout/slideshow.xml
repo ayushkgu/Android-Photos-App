@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView">
 
-        <model.Spinner
+        <model.CustomSpinner
             android:id="@+id/addTagOptions"
             android:layout_width="130dp"
             android:layout_height="wrap_content"/>

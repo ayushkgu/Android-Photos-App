@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.photos_android.photos_android43.SearchPage">
+    tools:context="com.androidphotosapp.photosandroidapp.SearchPage">
 
     <RelativeLayout
         android:id="@+id/relativeLayoutForSearch"
@@ -14,7 +14,7 @@
         android:layout_alignParentLeft="true"
         android:paddingBottom="5dp">
 
-        <model.Spinner
+        <model.CustomSpinner
             android:id="@+id/searchOptions"
             android:layout_width="130dp"
             android:layout_height="wrap_content"/>

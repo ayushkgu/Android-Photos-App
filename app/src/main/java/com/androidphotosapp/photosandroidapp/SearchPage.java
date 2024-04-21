@@ -16,10 +16,10 @@ import java.util.List;
 
 import model.PhotoGridAdapterSearch;
 import model.Photo;
-import model.Spinner;
+import model.CustomSpinner;
 
 public class SearchPage extends AppCompatActivity {
-    private Spinner spinner;
+    private CustomSpinner spinner;
     private int spinnerIndexSelected;
     private String [] spinnerItems = {"Location", "Person"};
     private List<String> locationTags;
@@ -39,7 +39,7 @@ public class SearchPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_page);
 
-        spinner = (Spinner) findViewById(R.id.searchOptions);
+        spinner = (CustomSpinner) findViewById(R.id.searchOptions);
         ArrayAdapter<CharSequence> itemAdapter = ArrayAdapter.createFromResource(this, R.array.search_options,android.R.layout.simple_spinner_item);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(itemAdapter);

@@ -20,12 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Album;
-import model.Spinner;
+import model.CustomSpinner;
 import model.Photo;
 import model.AlbumManager;
 
 public class Slideshow extends AppCompatActivity {
-    private Spinner spinner;
+    private CustomSpinner spinner;
     private int spinnerIndexSelected;
 
     private EditText tagEntered;
@@ -160,7 +160,7 @@ public class Slideshow extends AppCompatActivity {
         tagsAdapter = new ArrayAdapter<String>(this, R.layout.photos_tags_list, R.id.tagOfPhotosSlideshow, allTags);
         tagsList.setAdapter(tagsAdapter);
 
-        spinner = (Spinner) findViewById(R.id.addTagOptions);
+        spinner = (CustomSpinner) findViewById(R.id.addTagOptions);
         ArrayAdapter<CharSequence> itemAdapter = ArrayAdapter.createFromResource(this, R.array.search_options,android.R.layout.simple_spinner_item);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(itemAdapter);
