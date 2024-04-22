@@ -19,23 +19,27 @@
 
     <Button
         android:id="@+id/backwardBtn"
-        android:layout_width="25dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="141dp"
-        android:background="@null"
+        android:layout_marginLeft="10dp"
+        android:background="@android:color/transparent"
         android:text="@string/backbtntxt"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/forwardBtn"
-        android:layout_width="25dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="141dp"
-        android:background="@null"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
         android:text="@string/fwdbtntxt"
-        android:textSize="20dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <RelativeLayout
@@ -57,13 +61,20 @@
             android:hint="@string/tagValueName"
             android:inputType="text"/>
 
+
         <Button
             android:id="@+id/addTagButtonSlideshow"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_toRightOf="@id/addTagValue"
+            android:background="@android:color/transparent"
             android:text="@string/addButtonName"
-            android:textSize="14sp"/>
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
 
         <Button
             android:id="@+id/deleteTagButtonSlideshow"
@@ -71,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/addTagButtonSlideshow"
             android:text="-"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
             android:visibility="invisible"/>

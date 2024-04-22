@@ -271,7 +271,11 @@ public class SingleAlbumPage extends AppCompatActivity {
 
     private static void populatePhotosList() {
         photosInAlbum.clear();
-        photosInAlbum.addAll(Homepage.manager.getCurrentAlbum().getPhotos());
+        Album currentAlbum = Homepage.manager.getCurrentAlbum();
+        if (currentAlbum != null) {
+            photosInAlbum.addAll(currentAlbum.getPhotos());
+        }
     }
+
 
 }
