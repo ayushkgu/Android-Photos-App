@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:context="com.androidphotosapp.photosandroidapp.SingleAlbumPage">
 
-    <!-- Label for 'Album Name:' -->
     <TextView
         android:id="@+id/albumLabel"
         android:layout_width="wrap_content"
@@ -22,7 +21,6 @@
         android:textSize="21sp"
         android:textStyle="bold" />
 
-    <!-- TextView for displaying the actual album name -->
     <TextView
         android:id="@+id/albumName"
         android:layout_width="wrap_content"
@@ -33,8 +31,6 @@
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="21sp"
         android:textStyle="bold" />
-
-    <!-- Buttons and other views remain unchanged -->
 
     <Button
         android:id="@+id/movePhotoBtn"

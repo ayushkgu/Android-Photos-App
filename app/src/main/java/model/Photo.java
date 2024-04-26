@@ -9,7 +9,7 @@ import java.util.*;
 public class Photo implements Serializable {
 
     /* Serialization stuff */
-    private static final long serialVersionUID = 6641189840742017975L;
+//    private static final long serialVersionUID = 6641189840742017975L;
 
     private String photoPath;
     private String fileName;

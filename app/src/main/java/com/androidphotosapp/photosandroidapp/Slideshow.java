@@ -236,7 +236,6 @@ public class Slideshow extends AppCompatActivity {
                             currPhoto.removePersonTag(tagVal);
                         }
 
-                        // TODO Serialize
                         try {
                             AlbumManager.serialize(Homepage.manager);
                         } catch (IOException e) {

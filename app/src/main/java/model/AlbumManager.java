@@ -9,7 +9,7 @@ import java.util.*;
 public class AlbumManager implements Serializable {
 
     /* Serialization stuff */
-    private static final long serialVersionUID = 6641189840742017975L;
+//    private static final long serialVersionUID = 6641189840742017975L;
 
     private List<Album> albums;
     private Album currentAlbum;
@@ -78,7 +78,7 @@ public class AlbumManager implements Serializable {
                 }
             }
         }
-
+x
         resultList.addAll(resultSet);
         return resultList;
     }

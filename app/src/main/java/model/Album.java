@@ -9,7 +9,7 @@ import java.util.*;
 public class Album implements Serializable {
 
     /* Serialization */
-    private static final long serialVersionUID = 6641189840742017975L;
+//    private static final long serialVersionUID = 6641189840742017975L;
 
     // Title of the photo album
     private String albumTitle;
