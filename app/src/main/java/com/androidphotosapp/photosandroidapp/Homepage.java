@@ -161,6 +161,15 @@ public class Homepage extends AppCompatActivity {
                                     .setPositiveButton("Rename", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialogBox, int id) {
                                             String newname = albumNameinDialog.getText().toString();
+
+                                            // Check if the new name already exists
+                                            for (int j = 0; j < manager.getAlbums().size(); j++) {
+                                                if (j != indexOfAlbum && manager.getAlbums().get(j).getAlbumTitle().equals(newname)) {
+                                                    Toast.makeText(Homepage.this, "Duplicate Album Names Not Allowed! Try Another Name", Toast.LENGTH_SHORT).show();
+                                                    return;
+                                                }
+                                            }
+
                                             manager.getAlbums().get(indexOfAlbum).setAlbumTitle(newname);
 
                                             //serialize and refresh list
