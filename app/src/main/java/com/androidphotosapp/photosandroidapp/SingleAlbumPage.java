@@ -33,6 +33,7 @@ import model.PhotoGridAdapter2;
 import model.Photo;
 import model.AlbumManager;
 
+
 public class SingleAlbumPage extends AppCompatActivity {
 
     private static List<Photo> photosInAlbum = new ArrayList<Photo>();
@@ -54,6 +55,10 @@ public class SingleAlbumPage extends AppCompatActivity {
         TextView AlbumNameText = (TextView) findViewById(R.id.albumName);
         AlbumNameText.setText(Homepage.manager.getCurrentAlbum().getAlbumTitle());
 
+        // Clear the list of photos before populating it
+        photosInAlbum.clear();
+
+        // Populate the list of photos in the album
         populatePhotosList();
 
         gridview = (GridView) findViewById(R.id.gridView1);
@@ -271,10 +276,7 @@ public class SingleAlbumPage extends AppCompatActivity {
 
     private static void populatePhotosList() {
         photosInAlbum.clear();
-        Album currentAlbum = Homepage.manager.getCurrentAlbum();
-        if (currentAlbum != null) {
-            photosInAlbum.addAll(currentAlbum.getPhotos());
-        }
+        photosInAlbum.addAll(Homepage.manager.getCurrentAlbum().getPhotos());
     }
 
 

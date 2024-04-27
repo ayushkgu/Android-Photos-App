@@ -78,7 +78,7 @@ public class AlbumManager implements Serializable {
                 }
             }
         }
-x
+
         resultList.addAll(resultSet);
         return resultList;
     }

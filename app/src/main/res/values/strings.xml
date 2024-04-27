@@ -31,7 +31,7 @@
     <string name="addButtonName">+</string>
     <string name="searchButtonName">Search</string>
     <string name="deleteTagButtonText">X</string>
-    <string name="deleteButtonText">Delete Album</string>
-    <string name="moveButtonText">Move Album</string>
+    <string name="deleteButtonText">Delete </string>
+    <string name="moveButtonText">Move </string>
 
 </resources>
