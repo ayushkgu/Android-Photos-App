@@ -231,32 +231,43 @@ public class SingleAlbumPage extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, resultData);
 
         if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Uri uri = null;
-            if (resultData != null) {
-                uri = resultData.getData();
-                String image_uristr = uri.toString();
+            if (resultData != null && resultData.getData() != null) {
+                Uri uri = resultData.getData();
+                int takeFlags = resultData.getFlags()
+                        & (Intent.FLAG_GRANT_READ_URI_PERMISSION
+                        | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                // Check for the freshest data.
+                getContentResolver().takePersistableUriPermission(uri, takeFlags);
 
-                for(int i = 0; i < photosInAlbum.size(); i++){
-                    if(image_uristr.equals(photosInAlbum.get(i).getPhotoPath())){
-                        Toast.makeText(getApplicationContext(), "This photo already exists in the album", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                }
-
-                Homepage.manager.getCurrentAlbum().addPhoto(image_uristr);
-
-                try {
-                    AlbumManager.serialize(Homepage.manager);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                gridview = (GridView) findViewById(R.id.gridView1);
-                populatePhotosList();
-                imageAdapter.notifyDataSetChanged();
-                gridview.setAdapter(imageAdapter);
+                // Your existing code to handle the uri
+                handleImageUri(uri);
             }
         }
     }
+
+    private void handleImageUri(Uri uri) {
+        String image_uristr = uri.toString();
+
+        for(int i = 0; i < photosInAlbum.size(); i++){
+            if(image_uristr.equals(photosInAlbum.get(i).getPhotoPath())){
+                Toast.makeText(getApplicationContext(), "This photo already exists in the album", Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
+
+        Homepage.manager.getCurrentAlbum().addPhoto(image_uristr);
+
+        try {
+            AlbumManager.serialize(Homepage.manager);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        gridview = (GridView) findViewById(R.id.gridView1);
+        populatePhotosList();
+        imageAdapter.notifyDataSetChanged();
+        gridview.setAdapter(imageAdapter);
+    }
+
 
 
 
@@ -277,7 +288,9 @@ public class SingleAlbumPage extends AppCompatActivity {
     private static void populatePhotosList() {
         photosInAlbum.clear();
         photosInAlbum.addAll(Homepage.manager.getCurrentAlbum().getPhotos());
+        Log.d(TAG, "populatePhotosList: Photo count: " + photosInAlbum.size());
     }
+
 
 
 }
