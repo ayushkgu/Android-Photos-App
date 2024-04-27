@@ -189,6 +189,14 @@ public class Slideshow extends AppCompatActivity {
                     return;
                 }
 
+                String selectedTagType = spinnerItems[spinnerIndexSelected];
+
+                if (tagAlreadyExists(tagVal, selectedTagType)) {
+                    Toast.makeText(Slideshow.this, selectedTagType + " tag already exists in the album", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 Photo currPhoto = Homepage.manager.getCurrentAlbum().getCurrentPhoto();
 
                 if(spinnerIndexSelected == 0){
@@ -254,5 +262,34 @@ public class Slideshow extends AppCompatActivity {
         });
 
 
+
+
     }
+
+    private boolean tagAlreadyExists(String tagVal, String tagType) {
+        List<String> allTags = Homepage.manager.getCurrentAlbum().getCurrentPhoto().getAllTags();
+        for (String tag : allTags) {
+            // Split the tag to separate the tag key and value
+            String[] splitTag = tag.split(": ");
+            if (splitTag.length == 2) {
+                String tagKey = splitTag[0];
+                String tagValue = splitTag[1];
+                // Check if the tag value matches the provided tag value
+                if (tagType.equalsIgnoreCase("Location") && tagKey.equalsIgnoreCase("Location") && tagValue.equalsIgnoreCase(tagVal)) {
+                    // Found a matching location tag
+                    return true;
+                } else if (tagType.equalsIgnoreCase("Person") && tagKey.equalsIgnoreCase("Person") && tagValue.equalsIgnoreCase(tagVal)) {
+                    // Found a matching person tag
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+
 }
