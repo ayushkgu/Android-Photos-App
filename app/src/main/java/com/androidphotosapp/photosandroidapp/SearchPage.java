@@ -2,9 +2,11 @@ package com.androidphotosapp.photosandroidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -22,32 +24,48 @@ public class SearchPage extends AppCompatActivity {
     private CustomSpinner spinner;
     private int spinnerIndexSelected;
     private String [] spinnerItems = {"Location", "Person"};
-    private List<String> locationTags;
-    private List<String> personTags;
+    public List<String> locationTags;
+
+
+    public List<String> personTags;
 
     private Button addTagButton, searchButton;
-    private EditText tagEntered;
+    private AutoCompleteTextView tagEntered;
     private TextView tagsSelected;
 
     private PhotoGridAdapterSearch imageAdapter;
     GridView gridViewForSearchResult;
+    private ArrayAdapter<String> locationAdapter;
+    private ArrayAdapter<String> personAdapter;
 
-    private List<Photo> searchResults = new ArrayList<Photo>();
+    public List<Photo> searchResults = new ArrayList<Photo>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        locationTags = new ArrayList<>();
+        personTags = new ArrayList<>();
+        locationTags.add("new york");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_page);
-
         spinner = (CustomSpinner) findViewById(R.id.searchOptions);
         ArrayAdapter<CharSequence> itemAdapter = ArrayAdapter.createFromResource(this, R.array.search_options,android.R.layout.simple_spinner_item);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(itemAdapter);
 
+        locationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, locationTags);
+        personAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, personTags);
+
+        tagEntered = (AutoCompleteTextView) findViewById(R.id.tagValue);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 spinnerIndexSelected = i;
+                if (spinnerIndexSelected == 0) {
+                    tagEntered.setAdapter(locationAdapter);
+                } else if (spinnerIndexSelected == 1) {
+                    tagEntered.setAdapter(personAdapter);
+                }
             }
 
             @Override
@@ -56,7 +74,7 @@ public class SearchPage extends AppCompatActivity {
             }
         });
 
-        tagEntered = (EditText) findViewById(R.id.tagValue);
+        tagEntered = (AutoCompleteTextView) findViewById(R.id.tagValue);
         tagsSelected = (TextView) findViewById(R.id.tagsEnteredList);
         searchButton = (Button) findViewById(R.id.searchButton);
 
