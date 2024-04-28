@@ -83,6 +83,57 @@ public class AlbumManager implements Serializable {
         return resultList;
     }
 
+
+    public List<Photo> searchPhotosAND(List<String> locationTags, List<String> personTags) {
+        Set<Photo> resultSet = new HashSet<Photo>();
+
+        for (Album album : this.albums) {
+            for (Photo photo : album.getPhotos()) {
+                boolean allTagsMatch = true;
+
+                // Check location tags
+                for (String searchLocationTag : locationTags) {
+                    boolean locationTagMatch = false;
+                    for (String photoLocationTag : photo.getLocationTags()) {
+                        if (photoLocationTag.toLowerCase().contains(searchLocationTag.toLowerCase())) {
+                            locationTagMatch = true;
+                            break;
+                        }
+                    }
+                    if (!locationTagMatch) {
+                        allTagsMatch = false;
+                        break;
+                    }
+                }
+
+                // Check person tags only if all location tags matched
+                if (allTagsMatch) {
+                    for (String searchPersonTag : personTags) {
+                        boolean personTagMatch = false;
+                        for (String photoPersonTag : photo.getPersonTags()) {
+                            if (photoPersonTag.toLowerCase().contains(searchPersonTag.toLowerCase())) {
+                                personTagMatch = true;
+                                break;
+                            }
+                        }
+                        if (!personTagMatch) {
+                            allTagsMatch = false;
+                            break;
+                        }
+                    }
+                }
+
+                // Add photo to results if all tags matched
+                if (allTagsMatch) {
+                    resultSet.add(photo);
+                }
+            }
+        }
+
+        List<Photo> resultList = new ArrayList<Photo>(resultSet);
+        return resultList;
+    }
+
     /**
      * Serializes the AlbumManager object.
      * @param userData The AlbumManager object to serialize.

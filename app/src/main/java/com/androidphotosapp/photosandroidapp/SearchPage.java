@@ -29,7 +29,7 @@ public class SearchPage extends AppCompatActivity {
 
     public List<String> personTags;
 
-    private Button addTagButton, searchButton;
+    private Button addTagButton, searchButton, searchButtonAND;
     private AutoCompleteTextView tagEntered;
     private TextView tagsSelected;
 
@@ -77,6 +77,8 @@ public class SearchPage extends AppCompatActivity {
         tagEntered = (AutoCompleteTextView) findViewById(R.id.tagValue);
         tagsSelected = (TextView) findViewById(R.id.tagsEnteredList);
         searchButton = (Button) findViewById(R.id.searchButton);
+        searchButtonAND = (Button) findViewById(R.id.searchButtonAND);
+
 
         addTagButton = (Button) findViewById(R.id.addTagButton);
         locationTags = new ArrayList<String>();
@@ -100,6 +102,8 @@ public class SearchPage extends AppCompatActivity {
                 else if(spinnerIndexSelected == 1) personTags.add(tagVal);
 
                 searchButton.setVisibility(View.VISIBLE);
+                searchButtonAND.setVisibility(View.VISIBLE);
+
 
                 tagEntered.setText("");
             }
@@ -114,6 +118,18 @@ public class SearchPage extends AppCompatActivity {
             public void onClick(View view) {
                 searchResults.clear();
                 searchResults.addAll(Homepage.manager.getPhotosWithTags(locationTags, personTags));
+
+                // TODO Populate grid view with search result
+                gridViewForSearchResult = (GridView) findViewById(R.id.searchedPhotosGridView);
+                imageAdapter.notifyDataSetChanged();
+                gridViewForSearchResult.setAdapter(imageAdapter);
+            }
+        });
+        searchButtonAND.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchResults.clear();
+                searchResults.addAll(Homepage.manager.searchPhotosAND(locationTags, personTags));
 
                 // TODO Populate grid view with search result
                 gridViewForSearchResult = (GridView) findViewById(R.id.searchedPhotosGridView);

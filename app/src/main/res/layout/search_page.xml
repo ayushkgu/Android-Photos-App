@@ -46,7 +46,7 @@
 
         <TextView
             android:id="@+id/tagsEnteredList"
-            android:layout_width="275dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/tagsEnteredListHeader"
             android:textSize="16sp" />
@@ -56,7 +56,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tagsEnteredList"
-            android:text="@string/searchButtonName"
+            android:text="Search (OR)"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/searchButtonAND"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/searchButton"
+            android:text="Search (AND)"
             android:visibility="invisible" />
     </RelativeLayout>
 
