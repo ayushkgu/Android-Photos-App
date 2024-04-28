@@ -24,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tagValue"
+            android:backgroundTint="#FF0000"
             android:text="@string/addButtonName"
             android:textSize="14sp" />
 
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/searchOptions"
             android:completionThreshold="1"
-            android:hint="Enter a tag" />
+            android:hint="input" />
 
     </RelativeLayout>
 
@@ -48,14 +49,15 @@
             android:id="@+id/tagsEnteredList"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="@string/tagsEnteredListHeader"
-            android:textSize="16sp" />
+            android:text="Tag's List:"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/searchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tagsEnteredList"
+            android:backgroundTint="#FF0000"
             android:text="Search (OR)"
             android:visibility="invisible" />
 
@@ -64,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/searchButton"
+            android:backgroundTint="#FF0000"
             android:text="Search (AND)"
             android:visibility="invisible" />
     </RelativeLayout>

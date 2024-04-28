@@ -12,11 +12,11 @@
         android:id="@+id/albumLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Album Name:"
+        android:text="Name:"
         android:textColor="@android:color/black"
         android:textSize="21sp"
         android:textStyle="bold" />
@@ -41,18 +41,18 @@
         android:backgroundTint="@color/colorAccent"
         android:clickable="true"
         android:focusable="true"
-        android:text="@string/moveButtonText" />
+        android:text="Move Photo" />
 
     <Button
         android:id="@+id/deletePhotoBtn"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:backgroundTint="@color/colorAccent"
         android:clickable="true"
         android:focusable="true"
-        android:text="@string/deleteButtonText" />
+        android:text="Delete Photo" />
 
     <GridView
         android:id="@+id/gridView1"
@@ -61,9 +61,8 @@
         android:layout_below="@+id/deletePhotoBtn"
         android:columnWidth="120dp"
         android:gravity="center"
-        android:numColumns="auto_fit"
-        android:stretchMode="columnWidth">
-    </GridView>
+        android:numColumns="3"
+        android:stretchMode="none"></GridView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addPhotoBtn"

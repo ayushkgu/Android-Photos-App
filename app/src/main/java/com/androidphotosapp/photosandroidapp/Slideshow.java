@@ -35,7 +35,7 @@ public class Slideshow extends AppCompatActivity {
     private ArrayAdapter<String> tagsAdapter;
     private static List<String> allTags = new ArrayList<String>();
 
-    private TextView tagText, filename;
+    private TextView tagText;
     private Button deleteTagButton;
     private String [] spinnerItems = {"Location", "Person"};
 
@@ -57,11 +57,9 @@ public class Slideshow extends AppCompatActivity {
         this.imagePosition = slideShowPageIntent.getIntExtra("imagePosition", -1);
 
         imageOnSlideShow = (ImageView) findViewById(R.id.imageView);
-        filename = (TextView) findViewById(R.id.filename);
         if(this.imagePosition >= 0){
             Album currAlbum = Homepage.manager.getCurrentAlbum();
             Photo currPhoto = currAlbum.getPhotos().get(imagePosition);
-            filename.setText(currPhoto.getFileName());
             Uri imgUri = Uri.parse(currPhoto.getPhotoPath());
             imageOnSlideShow.setImageURI(imgUri);
 
@@ -73,14 +71,13 @@ public class Slideshow extends AppCompatActivity {
         backwardBtn = (Button) findViewById(R.id.backwardBtn);
         forwardBtn = (Button) findViewById(R.id.forwardBtn);
 
+
+
         backwardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 photosInAlbum.clear();
-                int albumsize = Homepage.manager.getCurrentAlbum().getPhotos().size();
-
-                for(int i = 0; i < albumsize; i++) {
+                for(int i = 0; i < Homepage.manager.getCurrentAlbum().getPhotos().size(); i++) {
                     photosInAlbum.add(Homepage.manager.getCurrentAlbum().getPhotos().get(i));
                 }
 
@@ -92,24 +89,20 @@ public class Slideshow extends AppCompatActivity {
                 currindex--;
 
                 if(currindex == -1) {
-                    currindex = albumsize-1;
+                    currindex = Homepage.manager.getCurrentAlbum().getPhotos().size()-1;
                 }
 
-                Photo newPhoto = Homepage.manager.getCurrentAlbum().getPhotos().get(currindex);
-                Homepage.manager.getCurrentAlbum().setCurrentPhoto(newPhoto);
+                Homepage.manager.getCurrentAlbum().setCurrentPhoto(Homepage.manager.getCurrentAlbum().getPhotos().get(currindex));
 
                 Album currAlbum = Homepage.manager.getCurrentAlbum();
                 Photo currPhoto = currAlbum.getPhotos().get(currindex);
-                filename.setText(currPhoto.getFileName());
-                Uri imgUri = Uri.parse(currPhoto.getPhotoPath());
-                imageOnSlideShow.setImageURI(imgUri);
+                imageOnSlideShow.setImageURI(Uri.parse(currPhoto.getPhotoPath()));
 
                 tagsList = (ListView) findViewById(R.id.tagsOfPhotoSlideshow);
                 allTags.clear();
                 allTags.addAll(Homepage.manager.getCurrentAlbum().getCurrentPhoto().getAllTags());
                 tagsAdapter.notifyDataSetChanged();
                 tagsList.setAdapter(tagsAdapter);
-
             }
         });
 
@@ -118,9 +111,8 @@ public class Slideshow extends AppCompatActivity {
             public void onClick(View view) {
 
                 photosInAlbum.clear();
-                int albumsize = Homepage.manager.getCurrentAlbum().getPhotos().size();
 
-                for(int i = 0; i < albumsize; i++) {
+                for(int i = 0; i < Homepage.manager.getCurrentAlbum().getPhotos().size(); i++) {
                     photosInAlbum.add(Homepage.manager.getCurrentAlbum().getPhotos().get(i));
                 }
 
@@ -131,7 +123,7 @@ public class Slideshow extends AppCompatActivity {
 
                 currindex++;
 
-                if(currindex == albumsize) {
+                if(currindex == Homepage.manager.getCurrentAlbum().getPhotos().size()) {
                     currindex = 0;
                 }
 
@@ -140,7 +132,6 @@ public class Slideshow extends AppCompatActivity {
 
                 Album currAlbum = Homepage.manager.getCurrentAlbum();
                 Photo currPhoto = currAlbum.getPhotos().get(currindex);
-                filename.setText(currPhoto.getFileName());
                 Uri imgUri = Uri.parse(currPhoto.getPhotoPath());
                 imageOnSlideShow.setImageURI(imgUri);
 

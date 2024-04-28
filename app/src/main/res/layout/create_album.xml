@@ -8,21 +8,6 @@
     android:padding="10dp"
     tools:context=".Homepage">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/userInputDialog"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="25dp"
-        android:fontFamily="monospace"
-        android:text="Create Album"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
     <EditText
         android:id="@+id/userInputDialog"
         android:layout_width="264dp"

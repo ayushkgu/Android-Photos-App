@@ -33,7 +33,6 @@ public class Homepage extends AppCompatActivity {
     private CustomSpinner spinner;
     private Button searchButton;
     final Context c = this;
-    String albumName;
 
     public static AlbumManager manager = new AlbumManager();
     File albumsfile = new File("/data/data/com.androidphotosapp.photosandroidapp/files/albums.dat");
