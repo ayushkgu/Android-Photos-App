@@ -16,6 +16,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:background="#FF0000"
+        android:backgroundTint="#FF0000"
         android:text="Name:"
         android:textColor="@android:color/black"
         android:textSize="21sp"
@@ -38,7 +40,7 @@
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/deletePhotoBtn"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="#FF0000"
         android:clickable="true"
         android:focusable="true"
         android:text="Move Photo" />
@@ -49,7 +51,7 @@
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="#FF0000"
         android:clickable="true"
         android:focusable="true"
         android:text="Delete Photo" />
