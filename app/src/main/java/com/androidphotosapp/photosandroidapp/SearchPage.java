@@ -14,8 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
+import model.Album;
 import model.PhotoGridAdapterSearch;
 import model.Photo;
 import model.CustomSpinner;
@@ -40,14 +43,48 @@ public class SearchPage extends AppCompatActivity {
 
     public List<Photo> searchResults = new ArrayList<Photo>();
 
+
+    private void collectAllTags() {
+        HashSet<String> locTags = new HashSet<>();
+        HashSet<String> perTags = new HashSet<>();
+
+        // Assuming there is a method to get all albums
+        for (Album album : Homepage.manager.getAlbums()) {
+            for (Photo photo : album.getPhotos()) {
+                locTags.addAll(photo.getLocationTags());
+                perTags.addAll(photo.getPersonTags());
+            }
+        }
+
+        locationTags.clear();
+        locationTags.addAll(locTags);
+        personTags.clear();
+        personTags.addAll(perTags);
+
+        // Update adapters with the new tag lists
+//        updateAdapters();
+    }
+
+    private void updateAdapters() {
+        locationAdapter.clear();
+        locationAdapter.addAll(locationTags);
+//        locationAdapter.notifyDataSetChanged();
+
+        personAdapter.clear();
+        personAdapter.addAll(personTags);
+//        personAdapter.notifyDataSetChanged();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         locationTags = new ArrayList<>();
         personTags = new ArrayList<>();
-        locationTags.add("new york");
+//        locationTags.add("new york");
+        collectAllTags();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_page);
         spinner = (CustomSpinner) findViewById(R.id.searchOptions);
+
         ArrayAdapter<CharSequence> itemAdapter = ArrayAdapter.createFromResource(this, R.array.search_options,android.R.layout.simple_spinner_item);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(itemAdapter);
@@ -137,5 +174,7 @@ public class SearchPage extends AppCompatActivity {
                 gridViewForSearchResult.setAdapter(imageAdapter);
             }
         });
+
+
     }
 }
