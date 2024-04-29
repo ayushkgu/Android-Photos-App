@@ -33,10 +33,14 @@ public class Slideshow extends AppCompatActivity {
     private ArrayAdapter<String> tagsAdapter;
     private static List<String> allTags = new ArrayList<String>();
     private TextView tagText;
+
+    public TextView filename;
+
     private String [] itemsInSpinner = {"Location", "Person"};
     private Button deleteTagButton;
 
     private static Album currentAlbum = null;
+
     private static int currentIndex;
     private static List<Photo> photosInAlbum = new ArrayList<Photo>();
     ImageView imageOnSlideShow;
@@ -52,13 +56,14 @@ public class Slideshow extends AppCompatActivity {
 
         Intent slideShowPageIntent = getIntent();
         this.imagePosition = slideShowPageIntent.getIntExtra("imagePosition", -1);
-
         imageOnSlideShow = (ImageView) findViewById(R.id.imageView);
+        filename = (TextView) findViewById(R.id.filename);
+
         if(this.imagePosition >= 0){
             Album currentAlbum = Homepage.manager.getCurrentAlbum();
             Photo currentPhoto = currentAlbum.getPhotos().get(imagePosition);
-            Uri imgUri = Uri.parse(currentPhoto.getPhotoPath());
-            imageOnSlideShow.setImageURI(imgUri);
+            filename.setText(currentPhoto.getFileName());
+            imageOnSlideShow.setImageURI(Uri.parse(currentPhoto.getPhotoPath()));
 
         }
         else{
@@ -93,6 +98,7 @@ public class Slideshow extends AppCompatActivity {
 
                 Album currentAlbum = Homepage.manager.getCurrentAlbum();
                 Photo currentPhoto = currentAlbum.getPhotos().get(currentIndex);
+                filename.setText(currentPhoto.getFileName());
                 imageOnSlideShow.setImageURI(Uri.parse(currentPhoto.getPhotoPath()));
 
                 tagsList = (ListView) findViewById(R.id.tagsOfPhotoSlideshow);

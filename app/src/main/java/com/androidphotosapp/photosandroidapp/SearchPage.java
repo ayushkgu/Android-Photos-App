@@ -25,8 +25,8 @@ import model.CustomSpinner;
 
 public class SearchPage extends AppCompatActivity {
     private CustomSpinner spinner;
-    private int selectedSpinnerIndex;
-    private String [] itemsInSpinner = {"Location", "Person"};
+    private int spinnerIndexSelected;
+    private String [] spinnerItems = {"Location", "Person"};
     public List<String> locationTags;
 
 
@@ -36,7 +36,7 @@ public class SearchPage extends AppCompatActivity {
     private AutoCompleteTextView tagEntered;
     private TextView tagsSelected;
 
-    private PhotoGridAdapterSearch imgAdapter;
+    private PhotoGridAdapterSearch imageAdapter;
     GridView gridViewForSearchResult;
     private ArrayAdapter<String> locationAdapter;
     private ArrayAdapter<String> personAdapter;
@@ -44,7 +44,7 @@ public class SearchPage extends AppCompatActivity {
     public List<Photo> searchResults = new ArrayList<Photo>();
 
 
-    private void collectallTagsList() {
+    private void collectAllTags() {
         HashSet<String> locTags = new HashSet<>();
         HashSet<String> perTags = new HashSet<>();
 
@@ -62,17 +62,17 @@ public class SearchPage extends AppCompatActivity {
         personTags.addAll(perTags);
 
         // Update adapters with the new tag lists
-        updateAdapters();
+//        updateAdapters();
     }
 
     private void updateAdapters() {
         locationAdapter.clear();
         locationAdapter.addAll(locationTags);
-        locationAdapter.notifyDataSetChanged();
+//        locationAdapter.notifyDataSetChanged();
 
         personAdapter.clear();
         personAdapter.addAll(personTags);
-        personAdapter.notifyDataSetChanged();
+//        personAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -80,7 +80,7 @@ public class SearchPage extends AppCompatActivity {
         locationTags = new ArrayList<>();
         personTags = new ArrayList<>();
 //        locationTags.add("new york");
-        collectallTagsList();
+        collectAllTags();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_page);
         spinner = (CustomSpinner) findViewById(R.id.searchOptions);
@@ -97,10 +97,10 @@ public class SearchPage extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedSpinnerIndex = i;
-                if (selectedSpinnerIndex == 0) {
+                spinnerIndexSelected = i;
+                if (spinnerIndexSelected == 0) {
                     tagEntered.setAdapter(locationAdapter);
-                } else if (selectedSpinnerIndex == 1) {
+                } else if (spinnerIndexSelected == 1) {
                     tagEntered.setAdapter(personAdapter);
                 }
             }
@@ -131,12 +131,12 @@ public class SearchPage extends AppCompatActivity {
                 }
 
                 String currText = tagsSelected.getText().toString();
-                String tagKey = itemsInSpinner[selectedSpinnerIndex];
+                String tagKey = spinnerItems[spinnerIndexSelected];
 
                 tagsSelected.setText(currText + "\n" + tagKey + ": " + tagVal);
 
-                if(selectedSpinnerIndex == 0) locationTags.add(tagVal);
-                else if(selectedSpinnerIndex == 1) personTags.add(tagVal);
+                if(spinnerIndexSelected == 0) locationTags.add(tagVal);
+                else if(spinnerIndexSelected == 1) personTags.add(tagVal);
 
                 searchButton.setVisibility(View.VISIBLE);
                 searchButtonAND.setVisibility(View.VISIBLE);
@@ -147,8 +147,8 @@ public class SearchPage extends AppCompatActivity {
         });
 
         gridViewForSearchResult = (GridView) findViewById(R.id.searchedPhotosGridView);
-        imgAdapter = new PhotoGridAdapterSearch(this, searchResults);
-        gridViewForSearchResult.setAdapter(imgAdapter);
+        imageAdapter = new PhotoGridAdapterSearch(this, searchResults);
+        gridViewForSearchResult.setAdapter(imageAdapter);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,9 +156,10 @@ public class SearchPage extends AppCompatActivity {
                 searchResults.clear();
                 searchResults.addAll(Homepage.manager.getPhotosWithTags(locationTags, personTags));
 
+                // TODO Populate grid view with search result
                 gridViewForSearchResult = (GridView) findViewById(R.id.searchedPhotosGridView);
-                imgAdapter.notifyDataSetChanged();
-                gridViewForSearchResult.setAdapter(imgAdapter);
+                imageAdapter.notifyDataSetChanged();
+                gridViewForSearchResult.setAdapter(imageAdapter);
             }
         });
         searchButtonAND.setOnClickListener(new View.OnClickListener() {
@@ -167,9 +168,10 @@ public class SearchPage extends AppCompatActivity {
                 searchResults.clear();
                 searchResults.addAll(Homepage.manager.searchPhotosAND(locationTags, personTags));
 
+                // TODO Populate grid view with search result
                 gridViewForSearchResult = (GridView) findViewById(R.id.searchedPhotosGridView);
-                imgAdapter.notifyDataSetChanged();
-                gridViewForSearchResult.setAdapter(imgAdapter);
+                imageAdapter.notifyDataSetChanged();
+                gridViewForSearchResult.setAdapter(imageAdapter);
             }
         });
 
