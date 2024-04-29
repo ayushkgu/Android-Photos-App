@@ -49,7 +49,6 @@
             android:id="@+id/tagsEnteredList"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Tag's List:"
             android:textSize="24sp" />
 
         <Button

@@ -12,36 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="320dp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/backwardBtn"
-        android:layout_toLeftOf="@id/forwardBtn"
+        android:layout_marginTop="0dp"
         android:contentDescription="@string/desc"
-        android:layout_marginTop="30dp"
-        app:srcCompat="@drawable/image_one"/>
-
-    <Button
-        android:id="@+id/backwardBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginLeft="10dp"
-        android:background="@android:color/transparent"
-        android:text="@string/backbtntxt"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/forwardBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="140dp"
-        android:layout_marginRight="10dp"
-        android:background="@android:color/transparent"
-        android:text="@string/fwdbtntxt"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        app:srcCompat="@drawable/image_one" />
 
     <RelativeLayout
         android:id="@+id/relativeLayoutForAddTag"
@@ -52,16 +25,17 @@
         <model.CustomSpinner
             android:id="@+id/addTagOptions"
             android:layout_width="130dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
+
 
         <EditText
             android:id="@+id/addTagValue"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="-4dp"
             android:layout_toRightOf="@id/addTagOptions"
             android:hint="Input tag value"
             android:inputType="text" />
-
 
         <Button
             android:id="@+id/addTagButtonSlideshow"
@@ -87,7 +61,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/addTagButtonSlideshow"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="#FF0000"
             android:paddingStart="8dp"
@@ -100,16 +73,44 @@
             android:textStyle="bold"
             android:visibility="visible" />
 
+        <Button
+            android:id="@+id/forwardBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/backwardBtn"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="282dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#FF0000"
+            android:text="Next"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/backwardBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/addTagButtonSlideshow"
+            android:layout_marginTop="-5dp"
+            android:backgroundTint="#FF0000"
+            android:text="Prev"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
 
     </RelativeLayout>
 
     <ListView
         android:id="@+id/tagsOfPhotoSlideshow"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
+        android:layout_width="233dp"
+        android:layout_height="190dp"
         android:layout_below="@id/relativeLayoutForAddTag"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="40dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="30dp" />
 
 </RelativeLayout>
