@@ -33,17 +33,17 @@ public class Homepage extends AppCompatActivity {
     private CustomSpinner spinner;
     private Button searchButton;
     final Context c = this;
+    File albumsfile = new File("/data/data/com.androidphotosapp.photosandroidapp/files/albums.dat");
 
     public static AlbumManager manager = new AlbumManager();
-    File albumsfile = new File("/data/data/com.androidphotosapp.photosandroidapp/files/albums.dat");
-    ListView testList;
     private static List<String> albums = new ArrayList<String>();
     private ArrayAdapter<String> arrayAdapter;
-
+    ListView listOfAlbums;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        // Deserialize AlbumManager
         try {
             manager = AlbumManager.deserialize();
         } catch (ClassNotFoundException e) {
@@ -55,7 +55,6 @@ public class Homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
 
-
         if(!albumsfile.exists()) {
             Context context = this;
             File file = new File(context.getFilesDir(), "albums.dat");
@@ -66,10 +65,11 @@ public class Homepage extends AppCompatActivity {
             }
         }
 
+        // Populate the list of albums
         populateAlbumList();
-        testList = (ListView) findViewById(R.id.albumsList);
+        listOfAlbums = (ListView) findViewById(R.id.albumsList);
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.album_list_view, R.id.textView, albums);
-        testList.setAdapter(arrayAdapter);
+        listOfAlbums.setAdapter(arrayAdapter);
 
 
         addAlbumBtn = (FloatingActionButton) findViewById(R.id.addAlbumBtn);
@@ -105,10 +105,10 @@ public class Homepage extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
 
-                                testList = (ListView) findViewById(R.id.albumsList);
+                                listOfAlbums = (ListView) findViewById(R.id.albumsList);
                                 populateAlbumList();
                                 arrayAdapter.notifyDataSetChanged();
-                                testList.setAdapter(arrayAdapter);
+                                listOfAlbums.setAdapter(arrayAdapter);
 
                             }
                         })
@@ -128,13 +128,15 @@ public class Homepage extends AppCompatActivity {
         spinner = (CustomSpinner) findViewById(R.id.spinner3);
         ArrayAdapter<CharSequence> itemAdapter = ArrayAdapter.createFromResource(this, R.array.album_options,android.R.layout.simple_spinner_item);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
         spinner.setPrompt("Select One:");
         spinner.setAdapter(itemAdapter);
         spinner.setVisibility(View.INVISIBLE);
-        testList.setLongClickable(true);
+        listOfAlbums.setLongClickable(true);
 
-
-        testList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        // Long click listener for the list of albums
+        listOfAlbums.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 spinner.setVisibility(View.VISIBLE);
@@ -178,10 +180,10 @@ public class Homepage extends AppCompatActivity {
                                                 e.printStackTrace();
                                             }
 
-                                            testList = (ListView) findViewById(R.id.albumsList);
+                                            listOfAlbums = (ListView) findViewById(R.id.albumsList);
                                             populateAlbumList();
                                             arrayAdapter.notifyDataSetChanged();
-                                            testList.setAdapter(arrayAdapter);
+                                            listOfAlbums.setAdapter(arrayAdapter);
 
 
                                             Toast.makeText(Homepage.this, "Album Successfully Renamed", Toast.LENGTH_SHORT).show();
@@ -209,10 +211,10 @@ public class Homepage extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
-                            testList = (ListView) findViewById(R.id.albumsList);
+                            listOfAlbums = (ListView) findViewById(R.id.albumsList);
                             populateAlbumList();
                             arrayAdapter.notifyDataSetChanged();
-                            testList.setAdapter(arrayAdapter);
+                            listOfAlbums.setAdapter(arrayAdapter);
                             Toast.makeText(Homepage.this, "Album Successfully Deleted", Toast.LENGTH_SHORT).show();
                         }
 
@@ -230,8 +232,8 @@ public class Homepage extends AppCompatActivity {
         });
 
 
-
-        testList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // Click listener for the list of albums
+        listOfAlbums.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -255,6 +257,7 @@ public class Homepage extends AppCompatActivity {
 
     }
 
+    // Method to populate the list of albums
     private static void populateAlbumList() {
         albums.clear();
 
@@ -262,5 +265,7 @@ public class Homepage extends AppCompatActivity {
             albums.add(manager.getAlbums().get(i).getAlbumTitle());
         }
     }
+
+
 
 }

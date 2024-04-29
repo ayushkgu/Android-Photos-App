@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tagValue"
             android:backgroundTint="#FF0000"
-            android:text="@string/addButtonName"
+            android:text="+"
             android:textSize="14sp" />
 
         <AutoCompleteTextView

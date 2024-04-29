@@ -38,11 +38,11 @@ public class SingleAlbumPage extends AppCompatActivity {
 
     private static List<Photo> photosInAlbum = new ArrayList<Photo>();
     private FloatingActionButton addPhotoBtn;
-    private static final int READ_REQUEST_CODE = 42;
-    private PhotoGridAdapter2 imageAdapter;
+    private PhotoGridAdapter2 imgAdapter;
     private Button deletePhotoBtn, movePhotoBtn;
     final Context c = this;
     GridView gridview;
+    private static final int READ_REQUEST_CODE = 42;
 
     private static final String TAG = "SingleAlbumPage";
 
@@ -62,21 +62,18 @@ public class SingleAlbumPage extends AppCompatActivity {
         populatePhotosList();
 
         gridview = (GridView) findViewById(R.id.gridView1);
-        imageAdapter = new PhotoGridAdapter2(this, photosInAlbum);
-        gridview.setAdapter(imageAdapter);
+        imgAdapter = new PhotoGridAdapter2(this, photosInAlbum);
+        gridview.setAdapter(imgAdapter);
 
         addPhotoBtn = (FloatingActionButton) findViewById(R.id.addPhotoBtn);
         addPhotoBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-
                 performFileSearch();
-
             }
 
             public void performFileSearch() {
-
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
 
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -94,7 +91,6 @@ public class SingleAlbumPage extends AppCompatActivity {
         movePhotoBtn.setVisibility(View.INVISIBLE);
         gridview.setLongClickable(true);
 
-
         gridview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -110,7 +106,7 @@ public class SingleAlbumPage extends AppCompatActivity {
 
                         Homepage.manager.getCurrentAlbum().removePhoto(photoindex);
 
-                        Toast.makeText(SingleAlbumPage.this, "Photo deleted successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SingleAlbumPage.this, "Photo Successfully Deleted ", Toast.LENGTH_SHORT).show();
 
                         try {
                             AlbumManager.serialize(Homepage.manager);
@@ -119,8 +115,8 @@ public class SingleAlbumPage extends AppCompatActivity {
                         }
                         gridview = (GridView) findViewById(R.id.gridView1);
                         populatePhotosList();
-                        imageAdapter.notifyDataSetChanged();
-                        gridview.setAdapter(imageAdapter);
+                        imgAdapter.notifyDataSetChanged();
+                        gridview.setAdapter(imgAdapter);
 
                         deletePhotoBtn.setVisibility(View.INVISIBLE);
                         movePhotoBtn.setVisibility(View.INVISIBLE);
@@ -138,6 +134,7 @@ public class SingleAlbumPage extends AppCompatActivity {
                         alertDialogBuilderUserInput.setView(mView);
                         TextView title = (TextView) mView.findViewById(R.id.title);
                         title.setText("Move Photo");
+
                         final EditText albumNameinDialog = (EditText) mView.findViewById(R.id.userInputDialog);
                         alertDialogBuilderUserInput
                                 .setCancelable(false)
@@ -183,8 +180,8 @@ public class SingleAlbumPage extends AppCompatActivity {
                                         }
                                         gridview = (GridView) findViewById(R.id.gridView1);
                                         populatePhotosList();
-                                        imageAdapter.notifyDataSetChanged();
-                                        gridview.setAdapter(imageAdapter);
+                                        imgAdapter.notifyDataSetChanged();
+                                        gridview.setAdapter(imgAdapter);
 
                                     }
                                 })
@@ -238,8 +235,6 @@ public class SingleAlbumPage extends AppCompatActivity {
                         | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                 // Check for the freshest data.
                 getContentResolver().takePersistableUriPermission(uri, takeFlags);
-
-                // Your existing code to handle the uri
                 handleImageUri(uri);
             }
         }
@@ -250,7 +245,7 @@ public class SingleAlbumPage extends AppCompatActivity {
 
         for(int i = 0; i < photosInAlbum.size(); i++){
             if(image_uristr.equals(photosInAlbum.get(i).getPhotoPath())){
-                Toast.makeText(getApplicationContext(), "This photo already exists in the album", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "This photo EXISTS in the album", Toast.LENGTH_LONG).show();
                 return;
             }
         }
@@ -264,8 +259,8 @@ public class SingleAlbumPage extends AppCompatActivity {
         }
         gridview = (GridView) findViewById(R.id.gridView1);
         populatePhotosList();
-        imageAdapter.notifyDataSetChanged();
-        gridview.setAdapter(imageAdapter);
+        imgAdapter.notifyDataSetChanged();
+        gridview.setAdapter(imgAdapter);
     }
 
 
@@ -276,7 +271,7 @@ public class SingleAlbumPage extends AppCompatActivity {
             if(albumname.equals(Homepage.manager.getAlbums().get(i).getAlbumTitle())){
                 for(int j = 0; j < Homepage.manager.getAlbums().get(i).getPhotos().size(); j++){
                     if(Homepage.manager.getAlbums().get(i).getPhotos().get(j).getPhotoPath().equals(photopath)){
-                        return "The photo already exists in the destination album";
+                        return "The photo EXISTS in the destination album";
                     }
                 }
                 return "good";

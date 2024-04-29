@@ -10,10 +10,11 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="270dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:contentDescription="@string/desc"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="Slideshow Display"
         app:srcCompat="@drawable/image_one" />
 
     <RelativeLayout
@@ -50,7 +51,7 @@
             android:paddingTop="0dp"
             android:paddingEnd="8dp"
             android:paddingBottom="0dp"
-            android:text="@string/addButtonName"
+            android:text="+"
             android:textColor="#000000"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -74,31 +75,29 @@
             android:visibility="visible" />
 
         <Button
-            android:id="@+id/forwardBtn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/backwardBtn"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="282dp"
-            android:layout_marginRight="10dp"
-            android:backgroundTint="#FF0000"
-            android:text="Next"
-            android:textColor="#000000"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <Button
             android:id="@+id/backwardBtn"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_below="@id/addTagButtonSlideshow"
-            android:layout_marginTop="-5dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="40dp"
             android:backgroundTint="#FF0000"
             android:text="Prev"
             android:textColor="#000000"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/forwardBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_toEndOf="@id/backwardBtn"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="#FF0000"
+            android:text="Next"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

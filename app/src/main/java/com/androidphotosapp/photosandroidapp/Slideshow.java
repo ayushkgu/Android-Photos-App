@@ -26,25 +26,22 @@ import model.AlbumManager;
 
 public class Slideshow extends AppCompatActivity {
     private CustomSpinner spinner;
-    private int spinnerIndexSelected;
-
+    private int selectedSpinnerIndex;
     private EditText tagEntered;
     private Button addTagButton, backwardBtn, forwardBtn;
-
     private ListView tagsList;
     private ArrayAdapter<String> tagsAdapter;
     private static List<String> allTags = new ArrayList<String>();
-
     private TextView tagText;
+    private String [] itemsInSpinner = {"Location", "Person"};
     private Button deleteTagButton;
-    private String [] spinnerItems = {"Location", "Person"};
 
     private static Album currAlbum = null;
-    private static int currindex;
+    private static int currentIndex;
     private static List<Photo> photosInAlbum = new ArrayList<Photo>();
-
-    private int imagePosition;
     ImageView imageOnSlideShow;
+    private int imagePosition;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,20 +79,20 @@ public class Slideshow extends AppCompatActivity {
                 }
 
                 if(currAlbum != Homepage.manager.getCurrentAlbum()) {
-                    currindex = imagePosition;
+                    currentIndex = imagePosition;
                     currAlbum = Homepage.manager.getCurrentAlbum();
                 }
 
-                currindex--;
+                currentIndex--;
 
-                if(currindex == -1) {
-                    currindex = Homepage.manager.getCurrentAlbum().getPhotos().size()-1;
+                if(currentIndex == -1) {
+                    currentIndex = Homepage.manager.getCurrentAlbum().getPhotos().size()-1;
                 }
 
-                Homepage.manager.getCurrentAlbum().setCurrentPhoto(Homepage.manager.getCurrentAlbum().getPhotos().get(currindex));
+                Homepage.manager.getCurrentAlbum().setCurrentPhoto(Homepage.manager.getCurrentAlbum().getPhotos().get(currentIndex));
 
                 Album currAlbum = Homepage.manager.getCurrentAlbum();
-                Photo currPhoto = currAlbum.getPhotos().get(currindex);
+                Photo currPhoto = currAlbum.getPhotos().get(currentIndex);
                 imageOnSlideShow.setImageURI(Uri.parse(currPhoto.getPhotoPath()));
 
                 tagsList = (ListView) findViewById(R.id.tagsOfPhotoSlideshow);
@@ -117,21 +114,21 @@ public class Slideshow extends AppCompatActivity {
                 }
 
                 if(currAlbum != Homepage.manager.getCurrentAlbum()) {
-                    currindex = imagePosition;
+                    currentIndex = imagePosition;
                     currAlbum = Homepage.manager.getCurrentAlbum();
                 }
 
-                currindex++;
+                currentIndex++;
 
-                if(currindex == Homepage.manager.getCurrentAlbum().getPhotos().size()) {
-                    currindex = 0;
+                if(currentIndex == Homepage.manager.getCurrentAlbum().getPhotos().size()) {
+                    currentIndex = 0;
                 }
 
-                Photo newPhoto = Homepage.manager.getCurrentAlbum().getPhotos().get(currindex);
+                Photo newPhoto = Homepage.manager.getCurrentAlbum().getPhotos().get(currentIndex);
                 Homepage.manager.getCurrentAlbum().setCurrentPhoto(newPhoto);
 
                 Album currAlbum = Homepage.manager.getCurrentAlbum();
-                Photo currPhoto = currAlbum.getPhotos().get(currindex);
+                Photo currPhoto = currAlbum.getPhotos().get(currentIndex);
                 Uri imgUri = Uri.parse(currPhoto.getPhotoPath());
                 imageOnSlideShow.setImageURI(imgUri);
 
@@ -159,7 +156,7 @@ public class Slideshow extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                spinnerIndexSelected = i;
+                selectedSpinnerIndex = i;
             }
 
             @Override
@@ -180,20 +177,18 @@ public class Slideshow extends AppCompatActivity {
                     return;
                 }
 
-                String selectedTagType = spinnerItems[spinnerIndexSelected];
-
+                String selectedTagType = itemsInSpinner[selectedSpinnerIndex];
                 if (tagAlreadyExists(tagVal, selectedTagType)) {
                     Toast.makeText(Slideshow.this, selectedTagType + " tag already exists in the album", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-
                 Photo currPhoto = Homepage.manager.getCurrentAlbum().getCurrentPhoto();
 
-                if(spinnerIndexSelected == 0){
+                if(selectedSpinnerIndex == 0){
                     currPhoto.addLocationTag(tagVal);
                 }
-                else if(spinnerIndexSelected == 1){
+                else if(selectedSpinnerIndex == 1){
                     currPhoto.addPersonTag(tagVal);
                 }
 
@@ -228,10 +223,10 @@ public class Slideshow extends AppCompatActivity {
                         String tagVal = splitList[1];
                         Photo currPhoto = Homepage.manager.getCurrentAlbum().getCurrentPhoto();
 
-                        if(tagKey.toLowerCase().equals(spinnerItems[0].toLowerCase())){
+                        if(tagKey.toLowerCase().equals(itemsInSpinner[0].toLowerCase())){
                             currPhoto.removeLocationTag(tagVal);
                         }
-                        else if(tagKey.toLowerCase().equals(spinnerItems[1].toLowerCase())){
+                        else if(tagKey.toLowerCase().equals(itemsInSpinner[1].toLowerCase())){
                             currPhoto.removePersonTag(tagVal);
                         }
 
@@ -251,10 +246,7 @@ public class Slideshow extends AppCompatActivity {
 
             }
         });
-
-
-
-
+        
     }
 
     private boolean tagAlreadyExists(String tagVal, String tagType) {
@@ -277,10 +269,5 @@ public class Slideshow extends AppCompatActivity {
         }
         return false;
     }
-
-
-
-
-
-
+    
 }
