@@ -132,8 +132,8 @@ public class SingleAlbumPage extends AppCompatActivity {
                         View mView = layoutInflaterAndroid.inflate(R.layout.create_album, null);
                         AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(c);
                         alertDialogBuilderUserInput.setView(mView);
-                        TextView title = (TextView) mView.findViewById(R.id.title);
-                        title.setText("Move Photo");
+//                        TextView title = (TextView) mView.findViewById(R.id.title);
+//                        title.setText("Move Photo");
 
                         final EditText albumNameinDialog = (EditText) mView.findViewById(R.id.userInputDialog);
                         alertDialogBuilderUserInput
@@ -193,8 +193,8 @@ public class SingleAlbumPage extends AppCompatActivity {
                                             }
                                         });
 
-                        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                        alertDialogAndroid.show();
+                        AlertDialog alrtAndroidDialog = alertDialogBuilderUserInput.create();
+                        alrtAndroidDialog.show();
 
 
                         deletePhotoBtn.setVisibility(View.INVISIBLE);
@@ -230,11 +230,9 @@ public class SingleAlbumPage extends AppCompatActivity {
         if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             if (resultData != null && resultData.getData() != null) {
                 Uri uri = resultData.getData();
-                int takeFlags = resultData.getFlags()
-                        & (Intent.FLAG_GRANT_READ_URI_PERMISSION
-                        | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                // Check for the freshest data.
+                int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
                 getContentResolver().takePersistableUriPermission(uri, takeFlags);
+
                 handleImageUri(uri);
             }
         }

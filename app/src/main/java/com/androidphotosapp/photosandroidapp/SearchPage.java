@@ -44,7 +44,7 @@ public class SearchPage extends AppCompatActivity {
     public List<Photo> searchResults = new ArrayList<Photo>();
 
 
-    private void collectAllTags() {
+    private void collectallTagsList() {
         HashSet<String> locTags = new HashSet<>();
         HashSet<String> perTags = new HashSet<>();
 
@@ -62,17 +62,17 @@ public class SearchPage extends AppCompatActivity {
         personTags.addAll(perTags);
 
         // Update adapters with the new tag lists
-//        updateAdapters();
+        updateAdapters();
     }
 
     private void updateAdapters() {
         locationAdapter.clear();
         locationAdapter.addAll(locationTags);
-//        locationAdapter.notifyDataSetChanged();
+        locationAdapter.notifyDataSetChanged();
 
         personAdapter.clear();
         personAdapter.addAll(personTags);
-//        personAdapter.notifyDataSetChanged();
+        personAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -80,7 +80,7 @@ public class SearchPage extends AppCompatActivity {
         locationTags = new ArrayList<>();
         personTags = new ArrayList<>();
 //        locationTags.add("new york");
-        collectAllTags();
+        collectallTagsList();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_page);
         spinner = (CustomSpinner) findViewById(R.id.searchOptions);
@@ -156,7 +156,6 @@ public class SearchPage extends AppCompatActivity {
                 searchResults.clear();
                 searchResults.addAll(Homepage.manager.getPhotosWithTags(locationTags, personTags));
 
-                // TODO Populate grid view with search result
                 gridViewForSearchResult = (GridView) findViewById(R.id.searchedPhotosGridView);
                 imgAdapter.notifyDataSetChanged();
                 gridViewForSearchResult.setAdapter(imgAdapter);
@@ -168,7 +167,6 @@ public class SearchPage extends AppCompatActivity {
                 searchResults.clear();
                 searchResults.addAll(Homepage.manager.searchPhotosAND(locationTags, personTags));
 
-                // TODO Populate grid view with search result
                 gridViewForSearchResult = (GridView) findViewById(R.id.searchedPhotosGridView);
                 imgAdapter.notifyDataSetChanged();
                 gridViewForSearchResult.setAdapter(imgAdapter);

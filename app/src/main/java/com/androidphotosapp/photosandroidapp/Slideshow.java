@@ -36,7 +36,7 @@ public class Slideshow extends AppCompatActivity {
     private String [] itemsInSpinner = {"Location", "Person"};
     private Button deleteTagButton;
 
-    private static Album currAlbum = null;
+    private static Album currentAlbum = null;
     private static int currentIndex;
     private static List<Photo> photosInAlbum = new ArrayList<Photo>();
     ImageView imageOnSlideShow;
@@ -55,9 +55,9 @@ public class Slideshow extends AppCompatActivity {
 
         imageOnSlideShow = (ImageView) findViewById(R.id.imageView);
         if(this.imagePosition >= 0){
-            Album currAlbum = Homepage.manager.getCurrentAlbum();
-            Photo currPhoto = currAlbum.getPhotos().get(imagePosition);
-            Uri imgUri = Uri.parse(currPhoto.getPhotoPath());
+            Album currentAlbum = Homepage.manager.getCurrentAlbum();
+            Photo currentPhoto = currentAlbum.getPhotos().get(imagePosition);
+            Uri imgUri = Uri.parse(currentPhoto.getPhotoPath());
             imageOnSlideShow.setImageURI(imgUri);
 
         }
@@ -78,9 +78,9 @@ public class Slideshow extends AppCompatActivity {
                     photosInAlbum.add(Homepage.manager.getCurrentAlbum().getPhotos().get(i));
                 }
 
-                if(currAlbum != Homepage.manager.getCurrentAlbum()) {
+                if(currentAlbum != Homepage.manager.getCurrentAlbum()) {
                     currentIndex = imagePosition;
-                    currAlbum = Homepage.manager.getCurrentAlbum();
+                    currentAlbum = Homepage.manager.getCurrentAlbum();
                 }
 
                 currentIndex--;
@@ -91,9 +91,9 @@ public class Slideshow extends AppCompatActivity {
 
                 Homepage.manager.getCurrentAlbum().setCurrentPhoto(Homepage.manager.getCurrentAlbum().getPhotos().get(currentIndex));
 
-                Album currAlbum = Homepage.manager.getCurrentAlbum();
-                Photo currPhoto = currAlbum.getPhotos().get(currentIndex);
-                imageOnSlideShow.setImageURI(Uri.parse(currPhoto.getPhotoPath()));
+                Album currentAlbum = Homepage.manager.getCurrentAlbum();
+                Photo currentPhoto = currentAlbum.getPhotos().get(currentIndex);
+                imageOnSlideShow.setImageURI(Uri.parse(currentPhoto.getPhotoPath()));
 
                 tagsList = (ListView) findViewById(R.id.tagsOfPhotoSlideshow);
                 allTags.clear();
@@ -113,9 +113,9 @@ public class Slideshow extends AppCompatActivity {
                     photosInAlbum.add(Homepage.manager.getCurrentAlbum().getPhotos().get(i));
                 }
 
-                if(currAlbum != Homepage.manager.getCurrentAlbum()) {
+                if(currentAlbum != Homepage.manager.getCurrentAlbum()) {
                     currentIndex = imagePosition;
-                    currAlbum = Homepage.manager.getCurrentAlbum();
+                    currentAlbum = Homepage.manager.getCurrentAlbum();
                 }
 
                 currentIndex++;
@@ -127,9 +127,9 @@ public class Slideshow extends AppCompatActivity {
                 Photo newPhoto = Homepage.manager.getCurrentAlbum().getPhotos().get(currentIndex);
                 Homepage.manager.getCurrentAlbum().setCurrentPhoto(newPhoto);
 
-                Album currAlbum = Homepage.manager.getCurrentAlbum();
-                Photo currPhoto = currAlbum.getPhotos().get(currentIndex);
-                Uri imgUri = Uri.parse(currPhoto.getPhotoPath());
+                Album currentAlbum = Homepage.manager.getCurrentAlbum();
+                Photo currentPhoto = currentAlbum.getPhotos().get(currentIndex);
+                Uri imgUri = Uri.parse(currentPhoto.getPhotoPath());
                 imageOnSlideShow.setImageURI(imgUri);
 
                 tagsList = (ListView) findViewById(R.id.tagsOfPhotoSlideshow);
@@ -183,13 +183,13 @@ public class Slideshow extends AppCompatActivity {
                     return;
                 }
 
-                Photo currPhoto = Homepage.manager.getCurrentAlbum().getCurrentPhoto();
+                Photo currentPhoto = Homepage.manager.getCurrentAlbum().getCurrentPhoto();
 
                 if(selectedSpinnerIndex == 0){
-                    currPhoto.addLocationTag(tagVal);
+                    currentPhoto.addLocationTag(tagVal);
                 }
                 else if(selectedSpinnerIndex == 1){
-                    currPhoto.addPersonTag(tagVal);
+                    currentPhoto.addPersonTag(tagVal);
                 }
 
                 tagEntered.setText("");
@@ -221,13 +221,13 @@ public class Slideshow extends AppCompatActivity {
                         String[] splitList = selectedTag.split(": ");
                         String tagKey = splitList[0];
                         String tagVal = splitList[1];
-                        Photo currPhoto = Homepage.manager.getCurrentAlbum().getCurrentPhoto();
+                        Photo currentPhoto = Homepage.manager.getCurrentAlbum().getCurrentPhoto();
 
                         if(tagKey.toLowerCase().equals(itemsInSpinner[0].toLowerCase())){
-                            currPhoto.removeLocationTag(tagVal);
+                            currentPhoto.removeLocationTag(tagVal);
                         }
                         else if(tagKey.toLowerCase().equals(itemsInSpinner[1].toLowerCase())){
-                            currPhoto.removePersonTag(tagVal);
+                            currentPhoto.removePersonTag(tagVal);
                         }
 
                         try {

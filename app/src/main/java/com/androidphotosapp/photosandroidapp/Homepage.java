@@ -120,8 +120,8 @@ public class Homepage extends AppCompatActivity {
                                     }
                                 });
 
-                AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                alertDialogAndroid.show();
+                AlertDialog alrtAndroidDialog = alertDialogBuilderUserInput.create();
+                alrtAndroidDialog.show();
             }
         });
 
@@ -153,8 +153,10 @@ public class Homepage extends AppCompatActivity {
                             View mView = layoutInflaterAndroid.inflate(R.layout.create_album, null);
                             AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(c);
                             alertDialogBuilderUserInput.setView(mView);
-                            TextView title = (TextView) mView.findViewById(R.id.title);
-                            title.setText("Rename Album");
+
+
+//                            TextView title = (TextView) mView.findViewById(R.id.title);
+//                            title.setText("Rename Album");
                             final EditText albumNameinDialog = (EditText) mView.findViewById(R.id.userInputDialog);
                             albumNameinDialog.setText(manager.getAlbums().get(indexOfAlbum).getAlbumTitle());
                             alertDialogBuilderUserInput
@@ -198,8 +200,8 @@ public class Homepage extends AppCompatActivity {
                                                 }
                                             });
 
-                            AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                            alertDialogAndroid.show();
+                            AlertDialog alrtAndroidDialog = alertDialogBuilderUserInput.create();
+                            alrtAndroidDialog.show();
 
                         }
 

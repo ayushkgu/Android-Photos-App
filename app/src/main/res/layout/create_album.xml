@@ -12,7 +12,6 @@
         android:id="@+id/userInputDialog"
         android:layout_width="264dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:hint="Enter name of album"

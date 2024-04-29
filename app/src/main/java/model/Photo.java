@@ -65,16 +65,16 @@ public class Photo implements Serializable {
      * @return A list of all tags.
      */
     public List<String> getAllTags(){
-        List<String> allTags = new ArrayList<String>();
+        List<String> allTagsList = new ArrayList<String>();
 
         for(String locationTag : this.getLocationTags()){
-            allTags.add("Location: " + locationTag);
+            allTagsList.add("Location: " + locationTag);
         }
         for(String personTag : this.getPersonTags()){
-            allTags.add("Person: " + personTag);
+            allTagsList.add("Person: " + personTag);
         }
 
-        return allTags;
+        return allTagsList;
     }
 
     /**
